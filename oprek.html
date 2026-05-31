@@ -24,6 +24,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 <div class="logo-text">
 <h1>OPREK</h1>
+<span>cees club</span>
 </div>
 
 <a href="alternatif.html">
@@ -39,17 +40,17 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <div class="card">
 
 <h2 class="section-title">
-UPLOAD GAMEPLAY
+UPLOAD FILE OPREK
 </h2>
 
 <label for="videoUpload" class="upload-box">
 
 <i class="fas fa-cloud-upload-alt"></i>
 
-<h3>Upload Gameplay</h3>
+<h3>Upload File</h3>
 
 <p>
-Klik untuk memilih file video
+Hanya MP4 atau MP3
 </p>
 
 </label>
@@ -57,7 +58,7 @@ Klik untuk memilih file video
 <input
 type="file"
 id="videoUpload"
-accept="video/*"
+accept=".mp4,.mp3"
 hidden
 onchange="previewFile()">
 
@@ -72,12 +73,12 @@ Belum ada file dipilih
 </p>
 
 <label>
-DESKRIPSI GAMEPLAY
+DESKRIPSI
 </label>
 
 <textarea
 id="deskripsi"
-placeholder="Jelaskan gameplay yang ingin dikirim...">
+placeholder="Masukkan deskripsi disini...">
 </textarea>
 
 <button
@@ -86,7 +87,7 @@ onclick="kirimGameplay()">
 
 <i class="fab fa-whatsapp"></i>
 
-KIRIM GAMEPLAY
+KIRIM PERMOHONAN
 
 </button>
 
@@ -95,15 +96,15 @@ KIRIM GAMEPLAY
 <div class="card">
 
 <h3>
-KETENTUAN
+INFORMASI
 </h3>
 
 <p class="description">
 
-• Pastikan video jelas.<br>
-• Berikan deskripsi yang lengkap.<br>
-• Gunakan format video yang didukung perangkat Anda.<br>
-• File video tidak dikirim otomatis ke WhatsApp Web, hanya informasi yang dikirim.
+• File yang diperbolehkan hanya MP4 dan MP3.<br>
+• Isi deskripsi dengan jelas.<br>
+• Nama file akan dikirim ke WhatsApp.<br>
+• Ganti nomor WhatsApp pada script sesuai kebutuhan Anda.
 
 </p>
 
@@ -149,12 +150,26 @@ function previewFile(){
 const file =
 document.getElementById('videoUpload').files[0];
 
-if(file){
+if(!file) return;
 
-document.getElementById('fileName').innerText =
-file.name;
+const ext =
+file.name.split('.').pop().toLowerCase();
+
+if(ext !== "mp4" && ext !== "mp3"){
+
+alert("Hanya file MP4 atau MP3 yang diperbolehkan!");
+
+document.getElementById('videoUpload').value = "";
+
+document.getElementById('fileName').innerHTML =
+"Belum ada file dipilih";
+
+return;
 
 }
+
+document.getElementById('fileName').innerHTML =
+"File Dipilih : " + file.name;
 
 }
 
@@ -164,21 +179,38 @@ const file =
 document.getElementById('videoUpload').files[0];
 
 const deskripsi =
-document.getElementById('deskripsi').value;
+document.getElementById('deskripsi').value.trim();
 
-const nomor =
-"62882020200336"; // GANTI SENDIRI
+if(!file){
 
-const namaFile =
-file ? file.name : "Tidak ada file";
+alert("Silakan pilih file terlebih dahulu!");
+
+return;
+
+}
+
+const namaFile = file.name;
+
+/*
+GANTI NOMOR INI
+CONTOH:
+6281234567890
+*/
+const nomor = "628XXXXXXXXXX";
 
 const pesan =
-`Halo Admin Eleven%0A%0A`+
-`Nama File : ${namaFile}%0A`+
-`Deskripsi : ${deskripsi}`;
+`Halo Admin Eleven
+
+Pengajuan Oprek
+
+Nama File:
+${namaFile}
+
+Deskripsi:
+${deskripsi}`;
 
 window.open(
-`https://wa.me/${nomor}?text=${pesan}`,
+`https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`,
 '_blank'
 );
 
