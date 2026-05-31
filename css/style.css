@@ -64,15 +64,15 @@ z-index:-1;
 /* PHONE FRAME */
 
 .phone{
-width:100%;
-max-width:480px;
-min-height:100vh;
+width:390px;
+height:844px;
 background:#000;
+border:2px solid #3a3a3a;
+border-radius:35px;
 overflow:hidden;
 position:relative;
 box-shadow:
 0 0 50px rgba(255,106,0,.15);
-margin:auto;
 }
 
 /* TEXTURE */
@@ -131,7 +131,8 @@ color:#fff;
 
 .content{
 padding:0 22px 100px;
-overflow-y:auto;
+height:calc(100% - 80px);
+overflow:auto;
 }
 
 .content::-webkit-scrollbar{
@@ -458,64 +459,12 @@ color:var(--orange);
 filter:drop-shadow(0 0 8px rgba(255,106,0,.8));
 }
 
-@media screen and (max-width: 768px){
-
-body{
-padding:0;
-}
-
-.phone{
-width:100%;
-max-width:100%;
-min-height:100vh;
-border:none;
-border-radius:0;
-}
-
-.main-logo{
-width:60%;
-max-width:250px;
-}
-
-.card,
-.alt-card{
-width:100%;
-}
-
-}
-
-@media screen and (max-width:480px){
-
-.logo-text h1{
-font-size:22px;
-}
-
-.section-title{
-font-size:14px;
-}
-
-.main-logo{
-width:55%;
-}
-
-.bottom-nav{
-height:75px;
-}
-
-.bottom-nav a i{
-font-size:18px;
-}
-
-.bottom-nav a span{
-font-size:10px;
-}
-
-}
 
 /* MOBILE */
 
 @media(max-width:420px){
 
+}
 .phone{
 width:100%;
 height:100vh;
