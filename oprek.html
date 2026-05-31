@@ -3,39 +3,188 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oprek</title>
+
+<title>Oprek - Eleven Cees Club</title>
 
 <link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 <body>
 
 <div class="phone">
 
-<h2 class="page-title">OPREK</h2>
+<header>
 
-<img src="assets/logo-eleven.png" class="logo">
+<a href="optest.html">
+<i class="fas fa-chevron-left"></i>
+</a>
 
-<label>UPLOAD GAMEPLAY</label>
+<div class="logo-text">
+<h1>OPREK</h1>
+</div>
 
-<input type="file">
+<a href="alternatif.html">
+<i class="fas fa-chevron-right"></i>
+</a>
 
-<label>DESKRIPSI GAMEPLAY</label>
+</header>
 
-<textarea placeholder="Jelaskan gameplay..."></textarea>
+<div class="content">
 
-<button class="submit-btn">
-KIRIM KE WHATSAPP
+<img src="assets/logo-eleven.png" class="main-logo">
+
+<div class="card">
+
+<h2 class="section-title">
+UPLOAD GAMEPLAY
+</h2>
+
+<label for="videoUpload" class="upload-box">
+
+<i class="fas fa-cloud-upload-alt"></i>
+
+<h3>Upload Gameplay</h3>
+
+<p>
+Klik untuk memilih file video
+</p>
+
+</label>
+
+<input
+type="file"
+id="videoUpload"
+accept="video/*"
+hidden
+onchange="previewFile()">
+
+<p id="fileName"
+style="
+margin-top:15px;
+text-align:center;
+color:#ff6a00;
+font-weight:600;
+">
+Belum ada file dipilih
+</p>
+
+<label>
+DESKRIPSI GAMEPLAY
+</label>
+
+<textarea
+id="deskripsi"
+placeholder="Jelaskan gameplay yang ingin dikirim...">
+</textarea>
+
+<button
+class="btn btn-orange"
+onclick="kirimGameplay()">
+
+<i class="fab fa-whatsapp"></i>
+
+KIRIM GAMEPLAY
+
 </button>
 
-<nav>
-<a href="index.html">HOME</a>
-<a href="contact.html">CONTACT</a>
-<a href="optest.html">OPTEST</a>
-<a href="oprek.html" class="active">OPREK</a>
-<a href="alternatif.html">ALT</a>
+</div>
+
+<div class="card">
+
+<h3>
+KETENTUAN
+</h3>
+
+<p class="description">
+
+• Pastikan video jelas.<br>
+• Berikan deskripsi yang lengkap.<br>
+• Gunakan format video yang didukung perangkat Anda.<br>
+• File video tidak dikirim otomatis ke WhatsApp Web, hanya informasi yang dikirim.
+
+</p>
+
+</div>
+
+</div>
+
+<nav class="bottom-nav">
+
+<a href="index.html">
+<i class="fas fa-house"></i>
+<span>HOME</span>
+</a>
+
+<a href="contact.html">
+<i class="fab fa-whatsapp"></i>
+<span>CONTACT</span>
+</a>
+
+<a href="optest.html">
+<i class="fas fa-crosshairs"></i>
+<span>OPTEST</span>
+</a>
+
+<a href="oprek.html" class="active">
+<i class="fas fa-microchip"></i>
+<span>OPREK</span>
+</a>
+
+<a href="alternatif.html">
+<i class="fas fa-link"></i>
+<span>ALT</span>
+</a>
+
 </nav>
 
 </div>
+
+<script>
+
+function previewFile(){
+
+const file =
+document.getElementById('videoUpload').files[0];
+
+if(file){
+
+document.getElementById('fileName').innerText =
+file.name;
+
+}
+
+}
+
+function kirimGameplay(){
+
+const file =
+document.getElementById('videoUpload').files[0];
+
+const deskripsi =
+document.getElementById('deskripsi').value;
+
+const nomor =
+"628XXXXXXXXXX"; // GANTI SENDIRI
+
+const namaFile =
+file ? file.name : "Tidak ada file";
+
+const pesan =
+`Halo Admin Eleven%0A%0A`+
+`Nama File : ${namaFile}%0A`+
+`Deskripsi : ${deskripsi}`;
+
+window.open(
+`https://wa.me/${nomor}?text=${pesan}`,
+'_blank'
+);
+
+}
+
+</script>
 
 </body>
 </html>
