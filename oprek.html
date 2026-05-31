@@ -11,6 +11,26 @@
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+<style>
+
+.link-input{
+width:100%;
+background:#0b0b0b;
+border:1px solid rgba(255,106,0,.6);
+color:#fff;
+padding:15px;
+border-radius:12px;
+outline:none;
+font-size:14px;
+margin-bottom:15px;
+}
+
+.link-input::placeholder{
+color:#888;
+}
+
+</style>
+
 </head>
 <body>
 
@@ -40,37 +60,22 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <div class="card">
 
 <h2 class="section-title">
-UPLOAD FILE OPREK
+LINK GAMEPLAY
 </h2>
 
-<label for="videoUpload" class="upload-box">
-
-<i class="fas fa-cloud-upload-alt"></i>
-
-<h3>Upload File</h3>
-
-<p>
-Hanya MP4 atau MP3
+<p class="description">
+Masukkan link video MP4 atau audio MP3 yang ingin dikirim.
 </p>
 
+<label>
+LINK FILE MP4 / MP3
 </label>
 
 <input
-type="file"
-id="videoUpload"
-accept=".mp4,.mp3"
-hidden
-onchange="previewFile()">
-
-<p id="fileName"
-style="
-margin-top:15px;
-text-align:center;
-color:#ff6a00;
-font-weight:600;
-">
-Belum ada file dipilih
-</p>
+type="url"
+id="linkFile"
+class="link-input"
+placeholder="https://contoh.com/video.mp4">
 
 <label>
 DESKRIPSI
@@ -78,7 +83,7 @@ DESKRIPSI
 
 <textarea
 id="deskripsi"
-placeholder="Masukkan deskripsi disini...">
+placeholder="Masukkan deskripsi gameplay atau informasi tambahan...">
 </textarea>
 
 <button
@@ -95,16 +100,14 @@ KIRIM PERMOHONAN
 
 <div class="card">
 
-<h3>
-INFORMASI
-</h3>
+<h3>INFORMASI</h3>
 
 <p class="description">
 
-• File yang diperbolehkan hanya MP4 dan MP3.<br>
+• Tempelkan link MP4 atau MP3.<br>
+• Bisa menggunakan Google Drive, MediaFire, Mega, Dropbox, dll.<br>
 • Isi deskripsi dengan jelas.<br>
-• Nama file akan dikirim ke WhatsApp.<br>
-• Ganti nomor WhatsApp pada script sesuai kebutuhan Anda.
+• Data akan dikirim ke WhatsApp Admin.
 
 </p>
 
@@ -145,66 +148,31 @@ INFORMASI
 
 <script>
 
-function previewFile(){
-
-const file =
-document.getElementById('videoUpload').files[0];
-
-if(!file) return;
-
-const ext =
-file.name.split('.').pop().toLowerCase();
-
-if(ext !== "mp4" && ext !== "mp3"){
-
-alert("Hanya file MP4 atau MP3 yang diperbolehkan!");
-
-document.getElementById('videoUpload').value = "";
-
-document.getElementById('fileName').innerHTML =
-"Belum ada file dipilih";
-
-return;
-
-}
-
-document.getElementById('fileName').innerHTML =
-"File Dipilih : " + file.name;
-
-}
-
 function kirimGameplay(){
 
-const file =
-document.getElementById('videoUpload').files[0];
+const link =
+document.getElementById('linkFile').value.trim();
 
 const deskripsi =
 document.getElementById('deskripsi').value.trim();
 
-if(!file){
+if(link === ""){
 
-alert("Silakan pilih file terlebih dahulu!");
+alert("Masukkan link MP4 atau MP3 terlebih dahulu!");
 
 return;
 
 }
 
-const namaFile = file.name;
-
-/*
-GANTI NOMOR INI
-CONTOH:
-6281234567890
-*/
-const nomor = "628XXXXXXXXXX";
+const nomor = "628XXXXXXXXXX"; // GANTI DENGAN NOMOR ADMIN
 
 const pesan =
 `Halo Admin Eleven
 
 Pengajuan Oprek
 
-Nama File:
-${namaFile}
+Link File:
+${link}
 
 Deskripsi:
 ${deskripsi}`;
