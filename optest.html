@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Optest - Eleven Cees Club</title>
+<title>Optest Eleven</title>
 
 <link rel="stylesheet" href="css/style.css">
 
@@ -44,11 +44,10 @@ PILIH KANG OPTEST
 
 <select id="kangOptest">
 <option value="">Pilih Kang Optest</option>
-<option>Kang Optest 1</option>
-<option>Kang Optest 2</option>
-<option>Kang Optest 3</option>
-<option>Kang Optest 4</option>
-<option>Kang Optest 5</option>
+<option>Kall</option>
+<option>Zamz</option>
+<option>Hengky</option>
+<option>Faris</option>
 </select>
 
 <label>
@@ -134,24 +133,20 @@ let nomor = "";
 
 switch(kang){
 
-case "Kang Optest 1":
-nomor = "254794094607";
+case "Kall":
+nomor = "6281515153449";
 break;
 
-case "Kang Optest 2":
-nomor = "6282222222222";
+case "Zamz":
+nomor = "6289507813007";
 break;
 
-case "Kang Optest 3":
-nomor = "6283333333333";
+case "Hengky":
+nomor = "6285764661776";
 break;
 
-case "Kang Optest 4":
-nomor = "6284444444444";
-break;
-
-case "Kang Optest 5":
-nomor = "6285555555555";
+case "Faris":
+nomor = "6282134979303";
 break;
 
 default:
@@ -161,9 +156,7 @@ return;
 }
 
 const text =
-`Halo Kang Optest
-
-Nama Kang : ${kang}
+`Halo ${kang} ada yang mau optest nih
 
 Pesan :
 ${pesan}`;
